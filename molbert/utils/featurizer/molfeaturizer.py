@@ -975,6 +975,53 @@ def rdkit_sparse_array_to_np(sparse_fp, use_counts, fp_size):
 
     return fp
 
+ALLOWED_ELEMENTS_TMC = tuple({
+    'Ag',
+    'As',
+    'Au',
+    'B',
+    'Br',
+    'C',
+    'Cd',
+    'Cl',
+    'Co',
+    'Cr',
+    'Cu',
+    'F',
+    'Fe',
+    'H',
+    'Hf',
+    'Hg',
+    'I',
+    'Ir',
+    'Mn',
+    'Mo',
+    'N',
+    'Nb',
+    'Ni',
+    'O',
+    'Os',
+    'P',
+    'Pd',
+    'Pt',
+    'Re',
+    'Rh',
+    'Ru',
+    'S',
+    'Sc',
+    'Se',
+    'Si',
+    'Ta',
+    'Tc',
+    'Te',
+    'Ti',
+    'V',
+    'W',
+    'Y',
+    'Zn',
+    'Zr',
+    '@@',
+})
 
 class SmilesIndexFeaturizer(MolFeaturizer):
     """
@@ -988,7 +1035,7 @@ class SmilesIndexFeaturizer(MolFeaturizer):
         pad: str = '☐',
         begin: str = '^',
         end: str = '$',
-        allowed_elements: tuple = ('F', 'H', 'I', 'B', 'C', 'N', 'O', 'P', 'S', 'Br', 'Cl', 'Si', 'Se', 'se', '@@'),
+        allowed_elements: tuple = ALLOWED_ELEMENTS_TMC,
         extra_symbols: Optional[List[str]] = None,
         canonicalise: bool = True,
         permute: bool = False,
@@ -1049,6 +1096,8 @@ class SmilesIndexFeaturizer(MolFeaturizer):
             '.',
             '[',
             ']',
+            '>',
+            '<'
         )
 
         self.idx_to_token = [*self.symbols, *self.allowed_elements_chars, *self.smiles_special_chars]
@@ -1349,7 +1398,7 @@ class SmilesIndexFeaturizer(MolFeaturizer):
     def bert_smiles_index_featurizer(
         cls,
         max_length: int,
-        allowed_elements: tuple = ('F', 'H', 'I', 'B', 'C', 'N', 'O', 'P', 'S', 'Br', 'Cl', 'Si', 'Se', 'se', '@@'),
+        allowed_elements: tuple = ALLOWED_ELEMENTS_TMC,
         canonicalise: bool = False,
         permute: bool = False,
     ):

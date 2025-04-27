@@ -19,10 +19,10 @@ class SmilesMolbertModel(MolbertModel):
         if self.hparams.tiny:
             config = BertConfigExtras(
                 vocab_size_or_config_json_file=self.hparams.vocab_size,
-                hidden_size=16,
-                num_hidden_layers=2,
-                num_attention_heads=2,
-                intermediate_size=32,
+                hidden_size=256,
+                num_hidden_layers=4,
+                num_attention_heads=4,
+                intermediate_size=1024,
                 max_position_embeddings=self.hparams.max_position_embeddings,
                 num_physchem_properties=self.hparams.num_physchem_properties,
                 named_descriptor_set=self.hparams.named_descriptor_set,

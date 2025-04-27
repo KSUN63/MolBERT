@@ -23,7 +23,7 @@ class SmilesMolbertApp(BaseMolbertApp):
         parser.add_argument(
             '--named_descriptor_set', type=str, default='all', help='What set of descriptors to use ("all" or "simple")'
         )
-        parser.add_argument('--vocab_size', default=42, type=int, help='Vocabulary size for smiles index featurizer')
+        parser.add_argument('--vocab_size', default=74, type=int, help='Vocabulary size for smiles index featurizer')
         return parser
 
 
